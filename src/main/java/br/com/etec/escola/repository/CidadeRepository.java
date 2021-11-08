@@ -1,4 +1,9 @@
 package br.com.etec.escola.repository;
 
-public interface CidadeRepository {
+import br.com.etec.escola.model.Cidade;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 }
