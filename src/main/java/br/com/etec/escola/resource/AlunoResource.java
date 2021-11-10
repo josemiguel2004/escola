@@ -2,13 +2,13 @@ package br.com.etec.escola.resource;
 
 import br.com.etec.escola.model.Aluno;
 import br.com.etec.escola.repository.AlunoRepository;
+import br.com.etec.escola.service.AlunoService;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +20,9 @@ public class AlunoResource {
     @Autowired
     private AlunoRepository alunoRepository;
 
+    @Autowired
+    private AlunoService alunoService;
+
     @GetMapping("/todos")
     public List<Aluno> listarTodosAlunos(){return alunoRepository.findAll(Sort.by("nome").ascending());}
 
@@ -29,5 +32,11 @@ public class AlunoResource {
         Optional<Aluno> aluno = alunoRepository.findById(id);
         return aluno.isPresent() ? ResponseEntity.ok(aluno.get()) : ResponseEntity.notFound().build();
 
+    }
+
+    @PostMapping()
+    public ResponseEntity<Aluno> criar(@RequestBody Aluno aluno, HttpResponse response){
+        Aluno alunoSalvo = alunoService.salvar(aluno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
     }
 }
