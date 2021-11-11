@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class AlunoResource {
     }
 
     @PostMapping()
-    public ResponseEntity<Aluno> criar(@RequestBody Aluno aluno, HttpResponse response){
+    public ResponseEntity<Aluno> criar(@RequestBody Aluno aluno, HttpServletResponse response){
         Aluno alunoSalvo = alunoService.salvar(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
     }
