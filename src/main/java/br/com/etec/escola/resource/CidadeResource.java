@@ -38,4 +38,8 @@ public class CidadeResource {
         Cidade cidadeSalva = cidadeService.salvar(cidade);
         return ResponseEntity.status(HttpStatus.CREATED).body(cidadeSalva);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long id){cidadeRepository.deleteById(id);}
 }

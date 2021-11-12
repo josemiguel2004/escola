@@ -40,4 +40,8 @@ public class AlunoResource {
         Aluno alunoSalvo = alunoService.salvar(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long id){alunoRepository.deleteById(id);}
 }

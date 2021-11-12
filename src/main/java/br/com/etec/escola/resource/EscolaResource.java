@@ -37,4 +37,8 @@ public class EscolaResource {
         Escola escolaSalva = escolaService.salvar(escola);
         return ResponseEntity.status(HttpStatus.CREATED).body(escolaSalva);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long id){escolaRepository.deleteById(id);}
 }
