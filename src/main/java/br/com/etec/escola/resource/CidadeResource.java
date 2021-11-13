@@ -42,4 +42,13 @@ public class CidadeResource {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id){cidadeRepository.deleteById(id);}
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cidade> atualizar(@PathVariable Long id, @RequestBody Cidade cidade){
+        Cidade cidadeSalva = cidadeService.atualizar(id,cidade);
+
+        return ResponseEntity.ok(cidadeSalva);
+
+    }
 }

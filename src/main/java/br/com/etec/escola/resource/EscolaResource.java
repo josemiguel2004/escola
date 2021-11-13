@@ -41,4 +41,11 @@ public class EscolaResource {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id){escolaRepository.deleteById(id);}
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Escola> atualizar(@PathVariable Long id,@RequestBody Escola escola){
+        Escola escolaSalva = escolaService.atualizar(id, escola);
+
+        return ResponseEntity.ok(escolaSalva);
+    }
 }

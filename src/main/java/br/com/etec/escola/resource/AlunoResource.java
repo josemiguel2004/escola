@@ -44,4 +44,12 @@ public class AlunoResource {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id){alunoRepository.deleteById(id);}
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Aluno> atualizar(@PathVariable Long id, @RequestBody Aluno aluno){
+        Aluno alunoSalvo = alunoService.atualizar(id, aluno);
+
+        return ResponseEntity.ok(alunoSalvo);
+
+    }
 }
