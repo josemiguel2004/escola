@@ -17,7 +17,7 @@ public class Estado {
 
     private String nome;
 
-    private char sigla_estado;
+    private String sigla_estado;
 
     @JsonIgnore
     @OneToMany(mappedBy = "estado")
@@ -39,11 +39,11 @@ public class Estado {
         this.nome = nome;
     }
 
-    public char getSigla_estado() {
+    public String getSigla_estado() {
         return sigla_estado;
     }
 
-    public void setSigla_estado(char sigla_estado) {
+    public void setSigla_estado(String sigla_estado) {
         this.sigla_estado = sigla_estado;
     }
 
